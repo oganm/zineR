@@ -18,8 +18,7 @@ seq_len(length(images)) %>% lapply(function(i){
   magick::image_crop(img,
                      magick::geometry_area(height = inf$height,
                                            width = inf$width/2,
-                                           x_off = inf$width/2*(i%%2 == 1)))# %>%
-    # magick::image_write(file.path('pages_reading',glue::glue('{i}.png')))
+                                           x_off = inf$width/2*(i%%2 == 1)))
 }) %>% do.call(c,.) -> first_half
 
 # second half
@@ -29,8 +28,7 @@ seq_len(length(images)) %>% lapply(function(i){
   magick::image_crop(img,
                      magick::geometry_area(height = inf$height,
                                            width = inf$width/2,
-                                           x_off = inf$width/2*(i%%2 == 1)))#  %>%
-   #  magick::image_write(file.path('pages_reading',glue::glue('{i+length(images)}.png')))
+                                           x_off = inf$width/2*(i%%2 == 1)))
 }) %>% do.call(c,.) -> second_half
 
 all = c(first_half,second_half)
