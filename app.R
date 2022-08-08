@@ -9,6 +9,8 @@ library(shiny)
 
 source('functions.R')
 
+options(shiny.maxRequestSize=30*1024^2)
+
 ui <- fluidPage(
     theme = shinythemes::shinytheme(theme='sandstone'),
     titlePanel('Zine Cutter'),
