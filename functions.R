@@ -4,8 +4,6 @@ library(png)
 library(glue)
 library(pdftools)
 
-file = 'jane.pdf'
-density = 100
 
 # writing pdfs with magick required this fix
 # https://stackoverflow.com/questions/52861946/imagemagick-not-authorized-to-convert-pdf-to-an-image
@@ -57,7 +55,7 @@ imposed_to_reading = function(input, file_out = NULL, density_in = 100, density_
     if(!is.null(file_out)){
         magick::image_write(all,file_out,format = 'pdf',density = density_out)
     }
-    return(invisible(images))
+    return(invisible(all))
 
 }
 
@@ -90,7 +88,7 @@ reading_to_imposed = function(input, file_out, density_in = 100, density_out= de
     if(!is.null(file_out)){
         magick::image_write(all,file_out,format = 'pdf',density = density_out)
     }
-    return(invisible(images))
+    return(invisible(all))
 }
 
 reading_to_one_page = function(input, file_out = NULL, density_in = 100, density_out= density_in){
@@ -129,7 +127,7 @@ reading_to_one_page = function(input, file_out = NULL, density_in = 100, density
     if(!is.null(file_out)){
         magick::image_write(all,file_out,format = 'pdf',density = density_out)
     }
-    return(invisible(images))
+    return(invisible(all))
 
 }
 
@@ -188,13 +186,12 @@ one_page_to_reading = function(input, file_out = NULL, density_in = 100, density
     if(!is.null(file_out)){
         magick::image_write(all,file_out,format = 'pdf',density = density_out)
     }
-    return(invisible(images))
+    return(invisible(all))
 }
 
 nothing = function(input, file_out = NULL, density_in = 100, density_out= density_in){
     info = process_input(input,density_in)
     images = info$images
-    images = magick::image_read_pdf(file,density = density_in)
     if(!is.null(file_out)){
         magick::image_write(images,file_out,format = 'pdf',density = density_out)
     }
